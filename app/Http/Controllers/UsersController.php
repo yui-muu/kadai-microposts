@@ -92,11 +92,9 @@ class UsersController extends Controller
     {
         // idの値でユーザを検索して取得
         $user = User::findOrFail($id);
-        // $microposts = User::findOrFail($id);
         
         // 関係するモデルの件数をロード
         $user->loadRelationshipCounts();
-        // $microposts->loadRelationshipCounts();
         
         // 一覧を取得
         $favorites = $user->favorites()->paginate(10);
@@ -105,7 +103,6 @@ class UsersController extends Controller
         return view('favorites.favorites', [
             'user' => $user,
             'microposts' => $favorites,
-            // 'microposts' => $microposts,
         ]);
     }
 }
